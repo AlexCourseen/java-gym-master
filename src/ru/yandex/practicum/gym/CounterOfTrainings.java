@@ -2,7 +2,7 @@ package ru.yandex.practicum.gym;
 
 import java.util.Objects;
 
-public class CounterOfTrainings{
+public class CounterOfTrainings {
     private Coach coach;
     private int countOfTrainigs;
 
