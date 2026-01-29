@@ -53,8 +53,8 @@ public class Timetable {
 
 
     public ArrayList<CounterOfTrainings> getCountByCoaches() {
-        HashMap<Coach,Integer> coachTrainings = new HashMap<>();
-        ArrayList<CounterOfTrainings> countersOfTrainings= new ArrayList<>();
+        HashMap<Coach, Integer> coachTrainings = new HashMap<>();
+        ArrayList<CounterOfTrainings> countersOfTrainings = new ArrayList<>();
         if (!timetable.isEmpty()) {
             for (TreeMap<TimeOfDay, ArrayList<TrainingSession>> trainigsPerDay : timetable.values()) {
                 for (ArrayList<TrainingSession> trainings : trainigsPerDay.values()) {
@@ -63,16 +63,16 @@ public class Timetable {
                         Coach currentTrainigCoach = currentTraining.getCoach();
                         int countOfTrainings;
                         if (coachTrainings.containsKey(currentTrainigCoach)) {
-                            countOfTrainings=coachTrainings.get(currentTrainigCoach)+1;
+                            countOfTrainings = coachTrainings.get(currentTrainigCoach) + 1;
                         } else {
                             countOfTrainings = 1;
                         }
-                        coachTrainings.put(currentTrainigCoach,countOfTrainings);
+                        coachTrainings.put(currentTrainigCoach, countOfTrainings);
                     }
                 }
             }
-            for (Coach coach: coachTrainings.keySet()) {
-                CounterOfTrainings counterOfTrainings = new CounterOfTrainings (coach,coachTrainings.get(coach));
+            for (Coach coach : coachTrainings.keySet()) {
+                CounterOfTrainings counterOfTrainings = new CounterOfTrainings(coach, coachTrainings.get(coach));
                 countersOfTrainings.add(counterOfTrainings);
                 CounterOfTrainingsComparator compar = new CounterOfTrainingsComparator();
                 countersOfTrainings.sort(compar);
