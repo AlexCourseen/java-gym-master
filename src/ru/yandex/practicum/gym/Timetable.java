@@ -20,10 +20,10 @@ public class Timetable {
             trainingsPerDay = timetable.get(trainingDay);
             if (trainingsPerDay.containsKey(trainingTime)) {
                 trainingSessionsPerTime = trainingsPerDay.get(trainingTime);
-                int index=0;
+                int index = 0;
                 for (TrainingSession training : trainingSessionsPerTime) {
                     if (training.getCoach().equals(trainigCoach)) {
-                        trainingSessionsPerTime.set(index,trainingSession);
+                        trainingSessionsPerTime.set(index, trainingSession);
                         return;
                     }
                     index++;
@@ -64,7 +64,7 @@ public class Timetable {
         if (!timetable.isEmpty()) {
             for (TreeMap<TimeOfDay, ArrayList<TrainingSession>> trainigsPerDay : timetable.values()) {
                 for (ArrayList<TrainingSession> trainings : trainigsPerDay.values()) {
-                    for (TrainingSession trainingSession: trainings) {
+                    for (TrainingSession trainingSession : trainings) {
                         Coach currentTrainigCoach = trainingSession.getCoach();
                         int countOfTrainings;
                         if (coachTrainings.containsKey(currentTrainigCoach)) {
