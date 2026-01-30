@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TimetableTest {
     private Timetable timetable;
@@ -27,7 +26,7 @@ public class TimetableTest {
         timetable.addNewTrainingSession(singleTrainingSession);
 
         assertEquals(1, timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY).size());//Проверить, что за понедельник вернулось одно занятие
-        assertNull(timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY));//Проверить, что за вторник не вернулось занятий
+        assertEquals(0, timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY).size());//Проверить, что за вторник не вернулось занятий
     }
 
     @Test
@@ -59,7 +58,7 @@ public class TimetableTest {
         assertEquals(new TimeOfDay(20, 0), timetable.getTrainingSessionsForDay(DayOfWeek.THURSDAY).
                 lastKey());
         // Проверить, что за вторник не вернулось занятий
-        assertNull(timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY));
+        assertEquals(0,timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY).size());
     }
 
     @Test
@@ -73,8 +72,8 @@ public class TimetableTest {
         assertEquals(1, timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY,
                 new TimeOfDay(13, 0)).size());
         //Проверить, что за понедельник в 14:00 не вернулось занятий
-        assertNull(timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY,
-                new TimeOfDay(14, 0)));
+        assertEquals(0,timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY,
+                new TimeOfDay(14, 0)).size());
     }
 
     @Test
@@ -122,6 +121,9 @@ public class TimetableTest {
 
         timetable.addNewTrainingSession(trainingSession1);
         timetable.addNewTrainingSession(trainingSession2);
+
+        System.out.println(timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY,
+                new TimeOfDay(13, 0)));
 
         assertEquals(1, timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY,
                 new TimeOfDay(13, 0)).size());
